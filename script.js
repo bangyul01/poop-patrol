@@ -1,4 +1,3 @@
-
 const gameArea = document.getElementById("gameArea");
 const basket = document.getElementById("basket");
 
@@ -17,6 +16,7 @@ let missed = 0;
 let best = Number(localStorage.getItem("poopBest")) || 0;
 
 let basketX = 0;
+let targetX = null;
 
 let poops = [];
 let flies = [];
@@ -68,6 +68,7 @@ function startGame() {
 
     moveLeft = false;
     moveRight = false;
+    targetX = null;
 
     clearInterval(gameLoop);
     clearInterval(poopSpawner);
@@ -227,10 +228,17 @@ function updateGame() {
     // MOVE BASKET
     if (moveLeft) {
         basketX -= 6;
+        targetX = null;
     }
 
     if (moveRight) {
         basketX += 6;
+        targetX = null;
+    }
+
+    // SMOOTHLY FOLLOW FINGER / MOUSE
+    if (targetX !== null) {
+        basketX += (targetX - basketX) * 0.35;
     }
 
     basketX = Math.max(
@@ -344,7 +352,7 @@ function updateGame() {
             fly.x + fly.element.offsetWidth >= basketLeft &&
             fly.x <= basketRight
         ) {
-            score = Math.max(0, score - 25);
+            score = Math.max(0, score - 10);
             scoreDisplay.textContent = score;
 
             showDamageEffect();
@@ -420,20 +428,33 @@ document.addEventListener("keyup", function(event) {
 
 
 // MOUSE AND TOUCH CONTROLS
-gameArea.addEventListener("pointermove", function(event) {
-    if (!gameRunning) return;
-
+function setTargetFromPointer(event) {
     const rect = gameArea.getBoundingClientRect();
 
-    basketX = event.clientX - rect.left - basket.offsetWidth / 2;
+    targetX = event.clientX - rect.left - basket.offsetWidth / 2;
 
-    basketX = Math.max(
+    targetX = Math.max(
         0,
         Math.min(
             gameArea.clientWidth - basket.offsetWidth,
-            basketX
+            targetX
         )
     );
+}
+
+gameArea.addEventListener("pointerdown", function(event) {
+    if (!gameRunning) return;
+
+    // Keep receiving moves even if the finger drifts outside the game area
+    gameArea.setPointerCapture(event.pointerId);
+
+    setTargetFromPointer(event);
+});
+
+gameArea.addEventListener("pointermove", function(event) {
+    if (!gameRunning) return;
+
+    setTargetFromPointer(event);
 });
 
 
