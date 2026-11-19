@@ -5,6 +5,7 @@
 }
 
 #gameArea {
+    touch-action: none;
     position: relative;
     width: 90%;
     height: 50vh;
@@ -15,6 +16,7 @@
     border-radius: 15px;
 }
 body {
+    overscroll-behavior: none;
     font-family: Arial, sans-serif;
     background: #eaf6ff;
     display: flex;
@@ -55,6 +57,7 @@ h1 {
 }
 
 .game-area {
+    touch-action: none;
     position: relative;
     width: 1320px;
     height: 710px;
