@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💩</text></svg>">
+    <title>Poop Patrol</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="game-container">
+
+        <h1>💩 POOP PATROL 🚽</h1>
+        <p class="subtitle">THE ULTIMATE BATHROOM ENFORCEMENT</p>
+
+        <div class="score-board">
+            <p>Score: <span id="score">0</span></p>
+            <p>Time: <span id="timer">60</span>s</p>
+            <p>Missed: <span id="missed">0</span>/5</p>
+            <p>Best: <span id="best">0</span></p>
+        </div>
+
+        <div class="game-area" id="gameArea">
+
+            <div class="cloud cloud1">☁️</div>
+            <div class="cloud cloud2">☁️</div>
+
+            <div class="basket" id="basket">🚽</div>
+
+            <div class="overlay" id="overlay">
+                <h2 id="gameMessage">POOP CATCHER!</h2>
+
+                <p id="gameDescription">
+                    Catch the falling poop and avoid the flies!
+                </p>
+
+                <button id="startButton">START GAME</button>
+            </div>
+
+        </div>
+
+        <p class="instructions">
+            ⬅️ ➡️ Use arrow keys or move your finger to control the toilet!
+        </p>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

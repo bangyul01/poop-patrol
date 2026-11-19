@@ -1,0 +1,249 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#gameArea {
+    position: relative;
+    width: 90%;
+    height: 50vh;
+    min-height: 350px;
+    max-height: 600px;
+    margin: 20px auto;
+    overflow: hidden;
+    border-radius: 15px;
+}
+body {
+    font-family: Arial, sans-serif;
+    background: #eaf6ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.game-container {
+    width: 90%;
+    max-width: 700px;
+    text-align: center;
+}
+
+h1 {
+    color: #2596be;
+    margin-bottom: 10px;
+    font-size: 32px;
+}
+
+.subtitle {
+    color: #777;
+    margin-bottom: 20px;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+.score-board {
+    display: flex;
+    justify-content: space-between;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    color: #2596be;
+    box-shadow: 0 3px 8px #00000010;
+}
+
+.game-area {
+    position: relative;
+    width: 1320px;
+    height: 710px;
+    max-width: 95vw;
+    max-height: 80vh;
+    min-height: 400px;
+    margin: 20px auto;
+    overflow: hidden;
+    border: 4px solid #55b6cc;
+    border-radius: 15px;
+    box-sizing: border-box;
+}
+
+.game-area::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 15px;
+    background: #8bc34a;
+}
+
+.basket {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    width: 80px;
+    height: 65px;
+    font-size: 55px;
+    text-align: center;
+    z-index: 2;
+    user-select: none;
+}
+
+.fruit {
+    position: absolute;
+    font-size: 35px;
+    user-select: none;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.golden-poop {
+    position: absolute;
+    width: 45px;
+    height: 45px;
+    user-select: none;
+    pointer-events: none;
+    z-index: 3;
+    filter: drop-shadow(0 0 8px gold);
+}
+
+.fly {
+    position: absolute;
+    font-size: 28px;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.cloud {
+    position: absolute;
+    font-size: 45px;
+    opacity: 0.7;
+}
+
+.cloud1 {
+    top: 40px;
+    left: 50px;
+}
+
+.cloud2 {
+    top: 100px;
+    right: 60px;
+}
+
+.splash {
+    position: absolute;
+    font-size: 25px;
+    pointer-events: none;
+    z-index: 4;
+    animation: splashEffect 0.6s ease-out forwards;
+}
+
+@keyframes splashEffect {
+    0% {
+        transform: scale(0.3);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(2) translateY(-20px);
+        opacity: 0;
+    }
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    z-index: 10;
+    padding: 20px;
+}
+
+.overlay h2 {
+    color: #2596be;
+    font-size: 30px;
+}
+
+.overlay p {
+    color: #555;
+}
+
+button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    background: #2596be;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover {
+    background: #16749a;
+    transform: scale(1.05);
+}
+
+.instructions {
+    margin-top: 15px;
+    color: #555;
+    font-size: 13px;
+}
+
+@media (max-width: 500px) {
+    h1 {
+        font-size: 24px;
+    }
+
+    .score-board {
+        font-size: 12px;
+        padding: 12px 8px;
+    }
+
+    .game-area {
+        width: 95%;
+        height: 65vh;
+        min-height: 350px;
+    }
+
+    .instructions {
+        font-size: 11px;
+    }
+}
+
+/* TOILET DAMAGE EFFECT */
+.damage {
+    animation: toiletDamage 0.3s ease;
+}
+
+@keyframes toiletDamage {
+    0% {
+        transform: translateX(0);
+        filter: brightness(1);
+    }
+
+    25% {
+        transform: translateX(-8px);
+        filter: brightness(0.6) sepia(1) saturate(5) hue-rotate(-50deg);
+    }
+
+    50% {
+        transform: translateX(8px);
+        filter: brightness(0.6) sepia(1) saturate(5) hue-rotate(-50deg);
+    }
+
+    75% {
+        transform: translateX(-5px);
+        filter: brightness(0.8) sepia(1) saturate(5) hue-rotate(-50deg);
+    }
+
+    100% {
+        transform: translateX(0);
+        filter: brightness(1);
+    }
+}
